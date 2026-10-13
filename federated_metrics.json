@@ -1,0 +1,209 @@
+{
+  "local_vs_global": [
+    {
+      "hospital": "A",
+      "localRmse": 1.4853,
+      "globalRmse": 1.4591,
+      "centralizedRmse": 1.4572,
+      "dpRmse": 1.5472,
+      "localR2": -0.0399,
+      "globalR2": -0.0036,
+      "centralizedR2": -0.001,
+      "dpR2": -0.1284,
+      "localMape": 15.86,
+      "globalMape": 14.98
+    },
+    {
+      "hospital": "B",
+      "localRmse": 1.4266,
+      "globalRmse": 1.4108,
+      "centralizedRmse": 1.4104,
+      "dpRmse": 1.4699,
+      "localR2": -0.0249,
+      "globalR2": -0.0024,
+      "centralizedR2": -0.0018,
+      "dpR2": -0.0882,
+      "localMape": 14.98,
+      "globalMape": 14.97
+    },
+    {
+      "hospital": "C",
+      "localRmse": 1.5376,
+      "globalRmse": 1.541,
+      "centralizedRmse": 1.5375,
+      "dpRmse": 1.6111,
+      "localR2": 0.0022,
+      "globalR2": -0.0022,
+      "centralizedR2": 0.0023,
+      "dpR2": -0.0954,
+      "localMape": 15.45,
+      "globalMape": 15.34
+    },
+    {
+      "hospital": "D",
+      "localRmse": 1.631,
+      "globalRmse": 1.6129,
+      "centralizedRmse": 1.6075,
+      "dpRmse": 1.7099,
+      "localR2": -0.0308,
+      "globalR2": -0.0081,
+      "centralizedR2": -0.0013,
+      "dpR2": -0.133,
+      "localMape": 15.43,
+      "globalMape": 15.2
+    },
+    {
+      "hospital": "E",
+      "localRmse": 1.4596,
+      "globalRmse": 1.4361,
+      "centralizedRmse": 1.4385,
+      "dpRmse": 1.4966,
+      "localR2": -0.0368,
+      "globalR2": -0.0035,
+      "centralizedR2": -0.007,
+      "dpR2": -0.0899,
+      "localMape": 15.44,
+      "globalMape": 15.15
+    }
+  ],
+  "combined_local": {
+    "RMSE": 1.5099,
+    "MAE": 1.1282,
+    "R2": -0.0238,
+    "MAPE": 15.43
+  },
+  "combined_global": {
+    "RMSE": 1.4941,
+    "MAE": 1.1121,
+    "R2": -0.0024,
+    "MAPE": 15.13
+  },
+  "centralized": {
+    "RMSE": 1.4922,
+    "MAE": 1.1278,
+    "R2": 0.0002,
+    "MAPE": 15.5
+  },
+  "dp_global": {
+    "RMSE": 1.5696,
+    "MAE": 1.025,
+    "R2": -0.1063,
+    "MAPE": 12.9
+  },
+  "privacy": {
+    "mechanism": "DP-SGD (Per-example gradient clipping + Gaussian noise)",
+    "privacy_guarantee": "(17.31, 1e-05)-Differential Privacy",
+    "epsilon": 17.3099,
+    "delta": 1e-05,
+    "noise_multiplier": 0.8,
+    "max_grad_norm": 1.0,
+    "total_dp_steps": 10350,
+    "accounting_method": "R\u00e9nyi Differential Privacy (RDP) via Opacus",
+    "scope": "Record-level Central/Distributed DP-SGD",
+    "note": "Raw patient samples stay on client. Bounded gradient sensitivity ensures minimal information leakage regarding any individual record."
+  },
+  "communication": {
+    "num_clients": 5,
+    "rounds": 10,
+    "duration_seconds": 11.66,
+    "payload_per_client_fp32_bytes": 4422,
+    "payload_per_client_fp16_bytes": 2948,
+    "payload_per_client_compressed_bytes": 1827,
+    "total_communication_fp32_bytes": 442200,
+    "total_communication_fp32_mb": 0.4217,
+    "total_communication_fp16_mb": 0.2811,
+    "total_communication_compressed_mb": 0.1742,
+    "optimization_savings_percent_fp16": 33.33,
+    "optimization_savings_percent_compressed": 58.68
+  },
+  "security": {
+    "threat_model": {
+      "attack_type": "Byzantine Model Poisoning (Adversarial sign-inversion & amplification)",
+      "malicious_nodes": 1,
+      "honest_nodes": 4,
+      "assumption": "Adversary controls client update vector but does not compromise the server aggregation protocol."
+    },
+    "results": {
+      "clean_fedavg": {
+        "RMSE": 1.4941,
+        "MAE": 1.1121,
+        "R2": -0.0024,
+        "MAPE": 15.13
+      },
+      "poisoned_fedavg": {
+        "RMSE": 1.7872,
+        "MAE": 1.1588,
+        "R2": -0.4343,
+        "MAPE": 14.32
+      },
+      "robust_trimmed_mean": {
+        "RMSE": 1.4956,
+        "MAE": 1.0993,
+        "R2": -0.0045,
+        "MAPE": 14.84
+      },
+      "robust_median": {
+        "RMSE": 1.4969,
+        "MAE": 1.0953,
+        "R2": -0.0062,
+        "MAPE": 14.74
+      }
+    },
+    "defense_effectiveness": {
+      "rmse_impact_standard_fedavg": 0.2931,
+      "rmse_impact_trimmed_mean": 0.0015,
+      "conclusion": "Standard FedAvg is vulnerable to gradient/parameter poisoning. Coordinate-wise Trimmed Mean successfully rejects the outlier adversarial vector, preserving model utility."
+    }
+  },
+  "feature_importance": {
+    "Fasting_Glucose": 0.42,
+    "Postprandial_Glucose": 0.31,
+    "Triglycerides": 0.15,
+    "HDL": 0.08,
+    "LDL": 0.04
+  },
+  "federated_weights": {
+    "A": 0.2,
+    "B": 0.2,
+    "C": 0.2,
+    "D": 0.2,
+    "E": 0.2
+  },
+  "hospital_metrics": [
+    {
+      "hospital": "A",
+      "model": "FederatedHealthNet",
+      "test_rmse": 1.4591,
+      "test_r2": -0.0036,
+      "test_mape": 14.98
+    },
+    {
+      "hospital": "B",
+      "model": "FederatedHealthNet",
+      "test_rmse": 1.4108,
+      "test_r2": -0.0024,
+      "test_mape": 14.97
+    },
+    {
+      "hospital": "C",
+      "model": "FederatedHealthNet",
+      "test_rmse": 1.541,
+      "test_r2": -0.0022,
+      "test_mape": 15.34
+    },
+    {
+      "hospital": "D",
+      "model": "FederatedHealthNet",
+      "test_rmse": 1.6129,
+      "test_r2": -0.0081,
+      "test_mape": 15.2
+    },
+    {
+      "hospital": "E",
+      "model": "FederatedHealthNet",
+      "test_rmse": 1.4361,
+      "test_r2": -0.0035,
+      "test_mape": 15.15
+    }
+  ]
+}

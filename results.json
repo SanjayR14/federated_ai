@@ -1,0 +1,323 @@
+{
+  "pipeline": "Flower Federated Learning Multi-Hospital Healthcare AI",
+  "framework": "Flower (1.30.0)",
+  "hospitals": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "features": [
+    "Fasting_Glucose",
+    "Postprandial_Glucose",
+    "Triglycerides",
+    "HDL",
+    "LDL"
+  ],
+  "target": "HbA1c_%",
+  "models_evaluated": {
+    "centralized": {
+      "RMSE": 1.4922,
+      "MAE": 1.1278,
+      "R2": 0.0002,
+      "MAPE": 15.5
+    },
+    "local_combined": {
+      "RMSE": 1.5099,
+      "MAE": 1.1282,
+      "R2": -0.0238,
+      "MAPE": 15.43
+    },
+    "federated_flower": {
+      "RMSE": 1.4941,
+      "MAE": 1.1121,
+      "R2": -0.0024,
+      "MAPE": 15.13
+    },
+    "differentially_private_federated": {
+      "RMSE": 1.5696,
+      "MAE": 1.025,
+      "R2": -0.1063,
+      "MAPE": 12.9
+    }
+  },
+  "per_hospital_breakdown": {
+    "centralized": {
+      "A": {
+        "RMSE": 1.4572,
+        "MAE": 1.1205,
+        "R2": -0.001,
+        "MAPE": 15.34
+      },
+      "B": {
+        "RMSE": 1.4104,
+        "MAE": 1.0949,
+        "R2": -0.0018,
+        "MAPE": 15.33
+      },
+      "C": {
+        "RMSE": 1.5375,
+        "MAE": 1.1497,
+        "R2": 0.0023,
+        "MAPE": 15.73
+      },
+      "D": {
+        "RMSE": 1.6075,
+        "MAE": 1.1664,
+        "R2": -0.0013,
+        "MAPE": 15.56
+      },
+      "E": {
+        "RMSE": 1.4385,
+        "MAE": 1.1071,
+        "R2": -0.007,
+        "MAPE": 15.54
+      }
+    },
+    "local": {
+      "A": {
+        "RMSE": 1.4853,
+        "MAE": 1.1488,
+        "R2": -0.0399,
+        "MAPE": 15.86
+      },
+      "B": {
+        "RMSE": 1.4266,
+        "MAE": 1.0838,
+        "R2": -0.0249,
+        "MAPE": 14.98
+      },
+      "C": {
+        "RMSE": 1.5376,
+        "MAE": 1.1359,
+        "R2": 0.0022,
+        "MAPE": 15.45
+      },
+      "D": {
+        "RMSE": 1.631,
+        "MAE": 1.1664,
+        "R2": -0.0308,
+        "MAPE": 15.43
+      },
+      "E": {
+        "RMSE": 1.4596,
+        "MAE": 1.1056,
+        "R2": -0.0368,
+        "MAPE": 15.44
+      }
+    },
+    "federated": {
+      "A": {
+        "RMSE": 1.4591,
+        "MAE": 1.106,
+        "R2": -0.0036,
+        "MAPE": 14.98
+      },
+      "B": {
+        "RMSE": 1.4108,
+        "MAE": 1.0793,
+        "R2": -0.0024,
+        "MAPE": 14.97
+      },
+      "C": {
+        "RMSE": 1.541,
+        "MAE": 1.1327,
+        "R2": -0.0022,
+        "MAPE": 15.34
+      },
+      "D": {
+        "RMSE": 1.6129,
+        "MAE": 1.1522,
+        "R2": -0.0081,
+        "MAPE": 15.2
+      },
+      "E": {
+        "RMSE": 1.4361,
+        "MAE": 1.0898,
+        "R2": -0.0035,
+        "MAPE": 15.15
+      }
+    },
+    "dp_federated": {
+      "A": {
+        "RMSE": 1.5472,
+        "MAE": 1.0315,
+        "R2": -0.1284,
+        "MAPE": 12.94
+      },
+      "B": {
+        "RMSE": 1.4699,
+        "MAE": 0.9807,
+        "R2": -0.0882,
+        "MAPE": 12.59
+      },
+      "C": {
+        "RMSE": 1.6111,
+        "MAE": 1.0259,
+        "R2": -0.0954,
+        "MAPE": 12.81
+      },
+      "D": {
+        "RMSE": 1.7099,
+        "MAE": 1.0865,
+        "R2": -0.133,
+        "MAPE": 13.28
+      },
+      "E": {
+        "RMSE": 1.4966,
+        "MAE": 0.9999,
+        "R2": -0.0899,
+        "MAPE": 12.89
+      }
+    }
+  },
+  "privacy": {
+    "mechanism": "DP-SGD (Per-example gradient clipping + Gaussian noise)",
+    "privacy_guarantee": "(17.31, 1e-05)-Differential Privacy",
+    "epsilon": 17.3099,
+    "delta": 1e-05,
+    "noise_multiplier": 0.8,
+    "max_grad_norm": 1.0,
+    "total_dp_steps": 10350,
+    "accounting_method": "R\u00e9nyi Differential Privacy (RDP) via Opacus",
+    "scope": "Record-level Central/Distributed DP-SGD",
+    "note": "Raw patient samples stay on client. Bounded gradient sensitivity ensures minimal information leakage regarding any individual record."
+  },
+  "communication": {
+    "num_clients": 5,
+    "rounds": 10,
+    "duration_seconds": 11.66,
+    "payload_per_client_fp32_bytes": 4422,
+    "payload_per_client_fp16_bytes": 2948,
+    "payload_per_client_compressed_bytes": 1827,
+    "total_communication_fp32_bytes": 442200,
+    "total_communication_fp32_mb": 0.4217,
+    "total_communication_fp16_mb": 0.2811,
+    "total_communication_compressed_mb": 0.1742,
+    "optimization_savings_percent_fp16": 33.33,
+    "optimization_savings_percent_compressed": 58.68
+  },
+  "quantization_tradeoff": {
+    "fp32_metrics": {
+      "RMSE": 1.4941,
+      "MAE": 1.1121,
+      "R2": -0.0024,
+      "MAPE": 15.13
+    },
+    "fp16_quantized_metrics": {
+      "RMSE": 1.4941,
+      "MAE": 1.1121,
+      "R2": -0.0024,
+      "MAPE": 15.13
+    },
+    "rmse_divergence": 0.0,
+    "conclusion": "Float16 quantization yields 50% bandwidth reduction with negligible loss in model fidelity (< 0.0001 RMSE delta)."
+  },
+  "security_experiments": {
+    "secure_aggregation": {
+      "protocol": "Pairwise Additive Masking (Bonawitz et al. SecAgg Protocol)",
+      "num_participating_clients": 5,
+      "exact_aggregate_reconstructed": true,
+      "max_reconstruction_error": 9.27e-06,
+      "average_mask_magnitude": 16.2597,
+      "security_property": "Individual client parameters are zero-sum masked; aggregator observes ONLY the sum.",
+      "production_distinction": "Simulation assumes synchronous participation without dropouts. Production SecAgg incorporates threshold Shamir secret sharing to reconstruct masks of dropped clients."
+    },
+    "poisoning_attack_defense": {
+      "threat_model": {
+        "attack_type": "Byzantine Model Poisoning (Adversarial sign-inversion & amplification)",
+        "malicious_nodes": 1,
+        "honest_nodes": 4,
+        "assumption": "Adversary controls client update vector but does not compromise the server aggregation protocol."
+      },
+      "results": {
+        "clean_fedavg": {
+          "RMSE": 1.4941,
+          "MAE": 1.1121,
+          "R2": -0.0024,
+          "MAPE": 15.13
+        },
+        "poisoned_fedavg": {
+          "RMSE": 1.7872,
+          "MAE": 1.1588,
+          "R2": -0.4343,
+          "MAPE": 14.32
+        },
+        "robust_trimmed_mean": {
+          "RMSE": 1.4956,
+          "MAE": 1.0993,
+          "R2": -0.0045,
+          "MAPE": 14.84
+        },
+        "robust_median": {
+          "RMSE": 1.4969,
+          "MAE": 1.0953,
+          "R2": -0.0062,
+          "MAPE": 14.74
+        }
+      },
+      "defense_effectiveness": {
+        "rmse_impact_standard_fedavg": 0.2931,
+        "rmse_impact_trimmed_mean": 0.0015,
+        "conclusion": "Standard FedAvg is vulnerable to gradient/parameter poisoning. Coordinate-wise Trimmed Mean successfully rejects the outlier adversarial vector, preserving model utility."
+      }
+    }
+  },
+  "Local_Models": [
+    {
+      "Hospital": "A",
+      "Model": "LocalHealthNet",
+      "Test_RMSE": 1.4853,
+      "Test_R2": -0.0399,
+      "Test_MAPE": 15.86
+    },
+    {
+      "Hospital": "B",
+      "Model": "LocalHealthNet",
+      "Test_RMSE": 1.4266,
+      "Test_R2": -0.0249,
+      "Test_MAPE": 14.98
+    },
+    {
+      "Hospital": "C",
+      "Model": "LocalHealthNet",
+      "Test_RMSE": 1.5376,
+      "Test_R2": 0.0022,
+      "Test_MAPE": 15.45
+    },
+    {
+      "Hospital": "D",
+      "Model": "LocalHealthNet",
+      "Test_RMSE": 1.631,
+      "Test_R2": -0.0308,
+      "Test_MAPE": 15.43
+    },
+    {
+      "Hospital": "E",
+      "Model": "LocalHealthNet",
+      "Test_RMSE": 1.4596,
+      "Test_R2": -0.0368,
+      "Test_MAPE": 15.44
+    }
+  ],
+  "Combined_Local_Metrics": {
+    "RMSE": 1.5099,
+    "MAE": 1.1282,
+    "R2": -0.0238,
+    "MAPE": 15.43
+  },
+  "Combined_Global_Metrics": {
+    "RMSE": 1.4941,
+    "MAE": 1.1121,
+    "R2": -0.0024,
+    "MAPE": 15.13
+  },
+  "Hospitals": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ]
+}

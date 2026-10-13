@@ -1,0 +1,136 @@
+{
+  "description": "Sample federated predictions from held-out hospital test splits",
+  "metrics": {
+    "RMSE": 1.4796214497210816,
+    "MAE": 1.147741965610088,
+    "R2": -0.05264490682346579,
+    "MAPE": 15.856304289651394
+  },
+  "samples": [
+    {
+      "hospital": "A",
+      "actual_hba1c": 8.3,
+      "predicted_hba1c": 7.07
+    },
+    {
+      "hospital": "A",
+      "actual_hba1c": 8.3,
+      "predicted_hba1c": 7.04
+    },
+    {
+      "hospital": "A",
+      "actual_hba1c": 5.8,
+      "predicted_hba1c": 7.39
+    },
+    {
+      "hospital": "A",
+      "actual_hba1c": 5.8,
+      "predicted_hba1c": 7.09
+    },
+    {
+      "hospital": "A",
+      "actual_hba1c": 6.1,
+      "predicted_hba1c": 6.92
+    },
+    {
+      "hospital": "B",
+      "actual_hba1c": 8.3,
+      "predicted_hba1c": 6.96
+    },
+    {
+      "hospital": "B",
+      "actual_hba1c": 7.0,
+      "predicted_hba1c": 7.1
+    },
+    {
+      "hospital": "B",
+      "actual_hba1c": 6.7,
+      "predicted_hba1c": 7.34
+    },
+    {
+      "hospital": "B",
+      "actual_hba1c": 6.3,
+      "predicted_hba1c": 7.7
+    },
+    {
+      "hospital": "B",
+      "actual_hba1c": 7.5,
+      "predicted_hba1c": 7.08
+    },
+    {
+      "hospital": "C",
+      "actual_hba1c": 7.8,
+      "predicted_hba1c": 7.22
+    },
+    {
+      "hospital": "C",
+      "actual_hba1c": 6.6,
+      "predicted_hba1c": 7.0
+    },
+    {
+      "hospital": "C",
+      "actual_hba1c": 5.8,
+      "predicted_hba1c": 6.94
+    },
+    {
+      "hospital": "C",
+      "actual_hba1c": 6.2,
+      "predicted_hba1c": 6.81
+    },
+    {
+      "hospital": "C",
+      "actual_hba1c": 10.7,
+      "predicted_hba1c": 7.05
+    },
+    {
+      "hospital": "D",
+      "actual_hba1c": 7.6,
+      "predicted_hba1c": 7.71
+    },
+    {
+      "hospital": "D",
+      "actual_hba1c": 8.2,
+      "predicted_hba1c": 6.77
+    },
+    {
+      "hospital": "D",
+      "actual_hba1c": 8.4,
+      "predicted_hba1c": 6.93
+    },
+    {
+      "hospital": "D",
+      "actual_hba1c": 7.3,
+      "predicted_hba1c": 7.27
+    },
+    {
+      "hospital": "D",
+      "actual_hba1c": 6.4,
+      "predicted_hba1c": 6.85
+    },
+    {
+      "hospital": "E",
+      "actual_hba1c": 7.9,
+      "predicted_hba1c": 7.0
+    },
+    {
+      "hospital": "E",
+      "actual_hba1c": 6.0,
+      "predicted_hba1c": 6.89
+    },
+    {
+      "hospital": "E",
+      "actual_hba1c": 5.9,
+      "predicted_hba1c": 6.94
+    },
+    {
+      "hospital": "E",
+      "actual_hba1c": 6.0,
+      "predicted_hba1c": 7.22
+    },
+    {
+      "hospital": "E",
+      "actual_hba1c": 8.0,
+      "predicted_hba1c": 6.89
+    }
+  ]
+}

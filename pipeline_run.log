@@ -1,0 +1,265 @@
+﻿
+======================================================================
+FEDERATED HbA1c REGRESSION ù TREE-BASED MODELS
+======================================================================
+Metrics: RMSE, MAE, R▓, MAPE (regression only ù no accuracy)
+Features: ['Fasting_Glucose', 'Postprandial_Glucose', 'Triglycerides', 'HDL', 'LDL']
+Log1p applied to: ['Triglycerides', 'Postprandial_Glucose']
+Primary tree model: XGBoostRegressor
+======================================================================
+
+======================================================================
+HOSPITAL A: Loading and Cleaning Data
+======================================================================
+Initial records: 2772
+
+HbA1c_% distribution (before range filter):
+count    2772.000000
+mean        6.979618
+std         1.593180
+min         5.000000
+25%         5.900000
+50%         6.300000
+75%         7.800000
+max        19.800000
+Name: HbA1c_%, dtype: float64
+Removing 7 rows with medically unrealistic HbA1c_% (< 4.0 or > 15.0)
+Records after soft cleaning: 2765
+Features used: ['Fasting_Glucose', 'Postprandial_Glucose', 'Triglycerides', 'HDL', 'LDL']
+
+======================================================================
+HOSPITAL B: Loading and Cleaning Data
+======================================================================
+Initial records: 2772
+
+HbA1c_% distribution (before range filter):
+count    2772.000000
+mean        6.933297
+std         1.547806
+min         5.000000
+25%         6.000000
+50%         6.300000
+75%         7.700000
+max        19.700000
+Name: HbA1c_%, dtype: float64
+Removing 8 rows with medically unrealistic HbA1c_% (< 4.0 or > 15.0)
+Records after soft cleaning: 2764
+Features used: ['Fasting_Glucose', 'Postprandial_Glucose', 'Triglycerides', 'HDL', 'LDL']
+
+======================================================================
+HOSPITAL C: Loading and Cleaning Data
+======================================================================
+Initial records: 2772
+
+HbA1c_% distribution (before range filter):
+count    2772.000000
+mean        6.937843
+std         1.546510
+min         5.000000
+25%         6.000000
+50%         6.300000
+75%         7.700000
+max        19.800000
+Name: HbA1c_%, dtype: float64
+Removing 9 rows with medically unrealistic HbA1c_% (< 4.0 or > 15.0)
+Records after soft cleaning: 2763
+Features used: ['Fasting_Glucose', 'Postprandial_Glucose', 'Triglycerides', 'HDL', 'LDL']
+
+======================================================================
+HOSPITAL D: Loading and Cleaning Data
+======================================================================
+Initial records: 2772
+
+HbA1c_% distribution (before range filter):
+count    2772.000000
+mean        7.013817
+std         1.670639
+min         5.000000
+25%         6.000000
+50%         6.300000
+75%         7.700000
+max        19.800000
+Name: HbA1c_%, dtype: float64
+Removing 14 rows with medically unrealistic HbA1c_% (< 4.0 or > 15.0)
+Records after soft cleaning: 2758
+Features used: ['Fasting_Glucose', 'Postprandial_Glucose', 'Triglycerides', 'HDL', 'LDL']
+
+======================================================================
+HOSPITAL E: Loading and Cleaning Data
+======================================================================
+Initial records: 2760
+
+HbA1c_% distribution (before range filter):
+count    2760.000000
+mean        6.972500
+std         1.608594
+min         5.000000
+25%         6.000000
+50%         6.300000
+75%         7.700000
+max        19.000000
+Name: HbA1c_%, dtype: float64
+Removing 9 rows with medically unrealistic HbA1c_% (< 4.0 or > 15.0)
+Records after soft cleaning: 2751
+Features used: ['Fasting_Glucose', 'Postprandial_Glucose', 'Triglycerides', 'HDL', 'LDL']
+Saved feature distributions: E:\Sem-8\Health care analytics\Phase -II\Multiple_hospital\Phase -II\multi-hospital-federated-ai\ml\feature_distributions.png
+
+Saved global scaler: scaler.pkl
+Saved feature order: feature_columns.json
+
+======================================================================
+HOSPITAL A: Training Tree-Based Model
+======================================================================
+  Train: 1935 (70.0%) | Val: 415 (15.0%) | Test: 415 (15.0%)
+
+Baseline model comparison (validation set):
+Model                              RMSE        MAE         R2       MAPE
+------------------------------------------------------------------------
+LinearRegression                 1.3674     1.0942    -0.0032     15.46%
+RandomForestRegressor            1.3961     1.1150    -0.0457     15.83%
+XGBoostRegressor                 1.4855     1.1487    -0.1840     16.34%
+
+Selected model: LinearRegression (validation RMSE = 1.3674, R▓ = -0.0032)
+
+Hospital A test metrics (LinearRegression):
+  RMSE: 1.4859
+  MAE:  1.1514
+  R▓:   -0.0038
+  MAPE: 15.63%
+  Saved: model_A.pkl
+
+======================================================================
+HOSPITAL B: Training Tree-Based Model
+======================================================================
+  Train: 1934 (70.0%) | Val: 415 (15.0%) | Test: 415 (15.0%)
+
+Baseline model comparison (validation set):
+Model                              RMSE        MAE         R2       MAPE
+------------------------------------------------------------------------
+LinearRegression                 1.4568     1.0790     0.0036     14.87%
+RandomForestRegressor            1.4719     1.0885    -0.0171     15.03%
+XGBoostRegressor                 1.5703     1.1507    -0.1576     15.91%
+
+Selected model: LinearRegression (validation RMSE = 1.4568, R▓ = 0.0036)
+
+Hospital B test metrics (LinearRegression):
+  RMSE: 1.4004
+  MAE:  1.0962
+  R▓:   -0.0045
+  MAPE: 15.37%
+  Saved: model_B.pkl
+
+======================================================================
+HOSPITAL C: Training Tree-Based Model
+======================================================================
+  Train: 1934 (70.0%) | Val: 414 (15.0%) | Test: 415 (15.0%)
+
+Baseline model comparison (validation set):
+Model                              RMSE        MAE         R2       MAPE
+------------------------------------------------------------------------
+LinearRegression                 1.5043     1.0805    -0.0147     14.44%
+RandomForestRegressor            1.5535     1.1344    -0.0822     15.27%
+XGBoostRegressor                 1.6371     1.1715    -0.2018     15.83%
+
+Selected model: LinearRegression (validation RMSE = 1.5043, R▓ = -0.0147)
+
+Hospital C test metrics (LinearRegression):
+  RMSE: 1.4157
+  MAE:  1.0798
+  R▓:   -0.0025
+  MAPE: 14.73%
+  Saved: model_C.pkl
+
+======================================================================
+HOSPITAL D: Training Tree-Based Model
+======================================================================
+  Train: 1930 (70.0%) | Val: 414 (15.0%) | Test: 414 (15.0%)
+
+Baseline model comparison (validation set):
+Model                              RMSE        MAE         R2       MAPE
+------------------------------------------------------------------------
+LinearRegression                 1.5543     1.1346    -0.0088     15.03%
+RandomForestRegressor            1.6074     1.1695    -0.0790     15.58%
+XGBoostRegressor                 1.6851     1.2221    -0.1858     16.31%
+
+Selected model: LinearRegression (validation RMSE = 1.5543, R▓ = -0.0088)
+
+Hospital D test metrics (LinearRegression):
+  RMSE: 1.4141
+  MAE:  1.1310
+  R▓:   -0.0011
+  MAPE: 15.71%
+  Saved: model_D.pkl
+
+======================================================================
+HOSPITAL E: Training Tree-Based Model
+======================================================================
+  Train: 1925 (70.0%) | Val: 413 (15.0%) | Test: 413 (15.0%)
+
+Baseline model comparison (validation set):
+Model                              RMSE        MAE         R2       MAPE
+------------------------------------------------------------------------
+LinearRegression                 1.7005     1.2263    -0.0094     16.31%
+RandomForestRegressor            1.7068     1.2357    -0.0168     16.47%
+XGBoostRegressor                 1.7832     1.2659    -0.1099     16.86%
+
+Selected model: RandomForestRegressor (validation RMSE = 1.7068, R▓ = -0.0168)
+
+Hospital E test metrics (RandomForestRegressor):
+  RMSE: 1.5344
+  MAE:  1.1547
+  R▓:   -0.0517
+  MAPE: 15.78%
+  Saved: model_E.pkl
+
+======================================================================
+WEIGHTED FEDERATED ENSEMBLE (prediction aggregation)
+======================================================================
+  Hospital A: weight=0.200 (1935 train samples)
+  Hospital B: weight=0.200 (1934 train samples)
+  Hospital C: weight=0.200 (1934 train samples)
+  Hospital D: weight=0.200 (1930 train samples)
+  Hospital E: weight=0.199 (1925 train samples)
+Global federated model saved: Global_Model.pkl
+
+======================================================================
+FEDERATED EVALUATION: Local vs Global (side-by-side)
+======================================================================
+Hospital   Model     Samples  Local_RMSE   Glob_RMSE   Local_R2    Glob_R2  Local_MAPE   Glob_MAPE
+--------------------------------------------------------------------------------------------------
+A          LinearRe      415      1.4859      1.4851    -0.0038    -0.0028      15.63%      15.64%
+B          LinearRe      415      1.4004      1.4026    -0.0045    -0.0077      15.37%      15.52%
+C          LinearRe      415      1.4157      1.4155    -0.0025    -0.0022      14.73%      14.92%
+D          LinearRe      414      1.4141      1.4183    -0.0011    -0.0071      15.71%      15.58%
+E          RandomFo      413      1.5344      1.4973    -0.0517    -0.0015      15.78%      15.35%
+
+======================================================================
+COMBINED TEST METRICS (all hospitals)
+======================================================================
+Scope              RMSE        MAE         R2       MAPE
+------------------------------------------------------
+Local            1.4510     1.1226    -0.0122     15.44%
+Global           1.4443     1.1194    -0.0029     15.40%
+
+======================================================================
+PERMUTATION FEATURE IMPORTANCE (global model)
+======================================================================
+Saved: E:\Sem-8\Health care analytics\Phase -II\Multiple_hospital\Phase -II\multi-hospital-federated-ai\ml\feature_importance.png
+  Postprandial_Glucose: -0.0014
+  HDL: -0.0011
+  LDL: -0.0010
+  Triglycerides: -0.0001
+  Fasting_Glucose: 0.0005
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+Trained 5 hospital models
+Global federated R▓:  -0.0029
+Global federated RMSE: 1.4443
+Global federated MAPE: 15.40%
+Target (R▓ > 0.5, MAPE < 20%): NOT MET (dataset may need more quality)
+Artifacts: Global_Model.pkl, scaler.pkl, feature_columns.json, results.json
+Plots: feature_distributions.png, feature_importance.png
+======================================================================
+

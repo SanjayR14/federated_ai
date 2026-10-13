@@ -1,0 +1,55 @@
+{
+  "system": "Federated Intelligent Healthcare Analytics and Clinical Decision Support",
+  "risk_categories": [
+    {
+      "range": "< 5.7",
+      "label": "Normal",
+      "color": "#22c55e"
+    },
+    {
+      "range": "5.7 \u2013 6.4",
+      "label": "Prediabetes",
+      "color": "#eab308"
+    },
+    {
+      "range": "6.5 \u2013 8.4",
+      "label": "Diabetes",
+      "color": "#f97316"
+    },
+    {
+      "range": ">= 8.5",
+      "label": "High Risk Diabetes",
+      "color": "#ef4444"
+    }
+  ],
+  "confidence_levels": {
+    "High": ">= 70",
+    "Moderate": "45 \u2013 69",
+    "Low": "< 45"
+  },
+  "federated_learning": {
+    "title": "Privacy-Preserving Federated Learning",
+    "points": [
+      "Local hospital models train independently on node-specific data.",
+      "Only model parameters and aggregated predictions are shared \u2014 never raw patient records.",
+      "The global model combines hospital contributions using sample-size-weighted ensembling.",
+      "Raw patient data never leaves the originating hospital node."
+    ]
+  },
+  "features_used": [
+    "Fasting_Glucose",
+    "Postprandial_Glucose",
+    "Triglycerides",
+    "HDL",
+    "LDL"
+  ],
+  "excluded_leakage_features": [
+    "Estimated_Avg_Glucose"
+  ],
+  "combined_global_metrics": {
+    "RMSE": 1.4796214497210816,
+    "MAE": 1.147741965610088,
+    "R2": -0.05264490682346579,
+    "MAPE": 15.856304289651394
+  }
+}

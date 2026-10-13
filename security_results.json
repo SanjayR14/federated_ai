@@ -1,0 +1,50 @@
+{
+  "secure_aggregation": {
+    "protocol": "Pairwise Additive Masking (Bonawitz et al. SecAgg Protocol)",
+    "num_participating_clients": 5,
+    "exact_aggregate_reconstructed": true,
+    "max_reconstruction_error": 9.27e-06,
+    "average_mask_magnitude": 16.2597,
+    "security_property": "Individual client parameters are zero-sum masked; aggregator observes ONLY the sum.",
+    "production_distinction": "Simulation assumes synchronous participation without dropouts. Production SecAgg incorporates threshold Shamir secret sharing to reconstruct masks of dropped clients."
+  },
+  "poisoning_attack_defense": {
+    "threat_model": {
+      "attack_type": "Byzantine Model Poisoning (Adversarial sign-inversion & amplification)",
+      "malicious_nodes": 1,
+      "honest_nodes": 4,
+      "assumption": "Adversary controls client update vector but does not compromise the server aggregation protocol."
+    },
+    "results": {
+      "clean_fedavg": {
+        "RMSE": 1.4941,
+        "MAE": 1.1121,
+        "R2": -0.0024,
+        "MAPE": 15.13
+      },
+      "poisoned_fedavg": {
+        "RMSE": 1.7872,
+        "MAE": 1.1588,
+        "R2": -0.4343,
+        "MAPE": 14.32
+      },
+      "robust_trimmed_mean": {
+        "RMSE": 1.4956,
+        "MAE": 1.0993,
+        "R2": -0.0045,
+        "MAPE": 14.84
+      },
+      "robust_median": {
+        "RMSE": 1.4969,
+        "MAE": 1.0953,
+        "R2": -0.0062,
+        "MAPE": 14.74
+      }
+    },
+    "defense_effectiveness": {
+      "rmse_impact_standard_fedavg": 0.2931,
+      "rmse_impact_trimmed_mean": 0.0015,
+      "conclusion": "Standard FedAvg is vulnerable to gradient/parameter poisoning. Coordinate-wise Trimmed Mean successfully rejects the outlier adversarial vector, preserving model utility."
+    }
+  }
+}
